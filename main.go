@@ -47,8 +47,10 @@ Loop:
 					users, _ := api.GetUsers()
 					var userIDs []string
 					for _, user := range users {
-						fmt.Println(user.Profile.DisplayName)
-						userIDs = append(userIDs, user.ID)
+						// Filter Apps
+						if user.Profile.DisplayName != ""  &&  user.Profile.DisplayName != "Slackbot" {
+							userIDs = append(userIDs, user.ID)
+						}
 					}
 
 					rand.Seed(time.Now().Unix())
